@@ -11,12 +11,35 @@
         "Other"
     ],
     "activationEvents": [
+		"onCommand:extension.vaultPush",
+        "onCommand:extension.vaultPull"
     ],
     "main": "./out/extension",
     "contributes": {
         "commands": [
-            
-        ]
+            {
+                "command": "extension.vaultPush",
+                "title": "Vault Push"
+            },
+            {
+                "command": "extension.vaultPull",
+                "title": "Vault Pull"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "when": "explorerResourceIsFolder",
+                    "command": "extension.vaultPush",
+                    "group": "VSVault"
+                },
+                {
+                    "when": "explorerResourceIsFolder",
+                    "command": "extension.vaultPull",
+                    "group": "VSVault"
+                }
+            ]
+        }
     },
     "scripts": {
         "vscode:prepublish": "npm run compile",
