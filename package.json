@@ -4,6 +4,7 @@
     "description": "AEM FileVault tool used to interact with a CRX repository",
     "version": "0.0.1",
     "publisher": "rcude54",
+    "license": "Apache-2.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/rcude54/VSVault"
@@ -19,35 +20,37 @@
     ],
     "main": "./out/extension",
     "contributes": {
-        "configuration": [{
-            "title": "VSVault configs",
-            "properties": {
-                "vsvault.vaultLocation": {
-                    "type": "string",
-                    "default": "",
-                    "description": "Local path to vault tool, should be ../vault-cli-*/bin",
-                    "scope":"window"
-                },
-                "vsvault.host": {
-                    "type": "string",
-                    "default": "localhost",
-                    "description": "AEM server host, defaults to localhost",
-                    "scope":"window"
-                },
-                "vsvault.port": {
-                    "type": "string",
-                    "default": "4502",
-                    "description": "AEM server port, defaults to 4502",
-                    "scope":"window"
-                },
-                "vsvault.credentials": {
-                    "type": "string",
-                    "default": "admin:admin",
-                    "description": "AEM user credentials, defaults to admin:admin. Format should be {username}:{password}. ",
-                    "scope":"window"
+        "configuration": [
+            {
+                "title": "VSVault",
+                "properties": {
+                    "vsvault.vaultLocation": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Local path to vault tool, should be ../vault-cli-*/bin",
+                        "scope": "window"
+                    },
+                    "vsvault.host": {
+                        "type": "string",
+                        "default": "localhost",
+                        "description": "AEM server host, defaults to localhost",
+                        "scope": "window"
+                    },
+                    "vsvault.port": {
+                        "type": "string",
+                        "default": "4502",
+                        "description": "AEM server port, defaults to 4502",
+                        "scope": "window"
+                    },
+                    "vsvault.credentials": {
+                        "type": "string",
+                        "default": "admin:admin",
+                        "description": "AEM user credentials, defaults to admin:admin. Format should be {username}:{password}. ",
+                        "scope": "window"
+                    }
                 }
             }
-        }],
+        ],
         "commands": [
             {
                 "command": "extension.vaultPush",
@@ -78,7 +81,7 @@
         "compile": "tsc -p ./",
         "watch": "tsc -watch -p ./",
         "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "npm run compile && node ./node_modules/vscode/bin/test"
+        "_comment": "**Test script(Currently Unused)** npm run compile && node ./node_modules/vscode/bin/test"
     },
     "devDependencies": {
         "@types/fs-extra": "^5.0.4",

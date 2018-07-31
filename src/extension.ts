@@ -3,26 +3,25 @@ import * as vscode from 'vscode';
 import * as fs from 'fs-extra';
 import * as xml2js from 'xml2js';
 import * as vltCom from './vaultCommands';
-import * as constants from './constants';
+import * as global from './global';
 
 let jcrPath = '';
 let tmpJcrRoot = '';
 
 export function activate(context: vscode.ExtensionContext) {
 
-    //
-	let config = vscode.workspace.getConfiguration();
-	constants.default.localInfo = {
-		host: config.get('vsvault.host', 'localhost'),
-		port: config.get('vsvault.port', '4502'),
-    	credentials: config.get('vsvault.credentials', 'admin:admin')
-	}
-    constants.default.vaultPath = config.get('vsvault.vaultLocation', '') + '/vlt';
-    constants.default.extPath  = context.extensionPath;
+    let config = vscode.workspace.getConfiguration();
+    global.default.localInfo = {
+        host: config.get('vsvault.host', 'localhost'),
+        port: config.get('vsvault.port', '4502'),
+        credentials: config.get('vsvault.credentials', 'admin:admin')
+    }
+    global.default.vaultPath = config.get('vsvault.vaultLocation', '') + '/vlt';
+    global.default.extPath  = context.extensionPath;
 
     context.subscriptions.push(vscode.commands.registerCommand('extension.vaultPush', (fileUri) => {
         let path = fileUri.path;
-        let metaPath = `${constants.default.tmpVaultPath}META-INF/vault/`;
+        let metaPath = `${global.default.tmpVaultPath}META-INF/vault/`;
         setPathVars(path);
 
         //Creates import file tructure for pushing(importing)
@@ -54,7 +53,7 @@ export function activate(context: vscode.ExtensionContext) {
         vltCom.vaultPull(jcrPath, function(){
             fs.copySync(tmpJcrRoot, path);
             vscode.window.showInformationMessage('Your content has been successfully pulled from the JCR!');
-            fs.remove(constants.default.tmpVaultPath);
+            fs.remove(global.default.tmpVaultPath);
         });
 
     }));
@@ -67,7 +66,7 @@ function setPathVars(path: string) {
     }
     jcrPath = path.substring(path.indexOf('jcr_root')+8);
     //Extension relative paths
-    tmpJcrRoot = `${constants.default.tmpVaultPath}jcr_root${jcrPath}`;
+    tmpJcrRoot = `${global.default.tmpVaultPath}jcr_root${jcrPath}`;
 }
 
 export function deactivate() {
