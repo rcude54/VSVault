@@ -4,7 +4,13 @@
     "description": "AEM FileVault tool used to interact with a CRX repository",
     "version": "1.0.0",
     "publisher": "rcude54",
-	"license": "Apache-2.0",
+	"license": "SEE LICENSE IN LICENSE",
+	"keywords": [
+        "AEM",
+        "Adobe Experience Manager",
+        "JCR",
+		"CRX"
+	],
 	"icon": "images/vsvault_icon.png",
     "repository": {
         "type": "git",
