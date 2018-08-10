@@ -14,6 +14,7 @@ export function vaultPush(){
             return;
         }
 
+        vscode.debug.activeDebugConsole.appendLine(format(stdout));
         vscode.window.showInformationMessage('Your content has been successfully pushed to the JCR!');
         fs.remove(global.default.tmpVaultPath);
     });

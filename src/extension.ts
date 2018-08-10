@@ -24,7 +24,7 @@ export function activate(context: vscode.ExtensionContext) {
         let metaPath = `${global.default.tmpVaultPath}META-INF/vault/`;
         setPathVars(path);
 
-        //Creates import file tructure for pushing(importing)
+        //Creates import file structure for pushing(importing)
         fs.copySync(path, tmpJcrRoot);
         fs.copySync(`${path.substring(0, path.indexOf('jcr_root'))}META-INF/vault/`, metaPath);
 
@@ -65,7 +65,6 @@ function setPathVars(path: string) {
         throw new Error('Invalid jcr path!');
     }
     jcrPath = path.substring(path.indexOf('jcr_root')+8);
-    //Extension relative paths
     tmpJcrRoot = `${global.default.tmpVaultPath}jcr_root${jcrPath}`;
 }
 

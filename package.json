@@ -2,9 +2,10 @@
     "name": "vsvault",
     "displayName": "VSVault",
     "description": "AEM FileVault tool used to interact with a CRX repository",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "publisher": "rcude54",
-    "license": "Apache-2.0",
+	"license": "Apache-2.0",
+	"icon": "images/vsvault_icon.png",
     "repository": {
         "type": "git",
         "url": "https://github.com/rcude54/VSVault"
